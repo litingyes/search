@@ -2,7 +2,7 @@
  * @Date: 2023-01-07 15:32:54
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-07 17:57:45
+ * @LastEditTime: 2023-01-07 23:53:59
  * @FilePath: /search/pages/index.vue
 -->
 <template>
@@ -22,21 +22,36 @@
         </div>
       </ElTag>
     </div>
-    <ElInput v-model="inputValue" class="!w-128">
-      <template #prepend>
-        <ClientOnly>
-          <ElSelect
-            v-model="selectedListOption"
-            class="w-36"
-            :validate-event="false"
-            :effect="colorMode.value"
-            @change="selectListOption"
-          >
-            <ElOption v-for="option in listOptions" :key="option.label" :label="option.label" :value="option"></ElOption>
-          </ElSelect>
-        </ClientOnly>
-      </template>
-    </ElInput>
+    <div>
+      <ClientOnly>
+        <ElSelect
+          v-model="selectedListOption"
+          class="w-36"
+          :validate-event="false"
+          :effect="colorMode.value"
+          @change="selectListOption"
+        >
+          <ElOption v-for="option in listOptions" :key="option.label" :label="option.label" :value="option"></ElOption>
+        </ElSelect>
+      </ClientOnly>
+      <el-popover width="600px" trigger="click">
+        <template #reference>
+          <ElInput v-model="inputValue" class="!w-96">
+            <template #append>
+              <div class="i-uil:search text-lg cursor-pointer" @click="search"></div>
+            </template>
+          </ElInput>
+        </template>
+        <ElForm size="small">
+          <ElFormItem v-for="item in popoverFormMap" :key="item.key" :label="item.desc">
+            <ElInput v-if="item.type === 'input'" v-model="popoverFormMapData[item.key]"></ElInput>
+            <ElRadioGroup v-else-if="item.type === 'radio'" v-model="popoverFormMapData[item.key]" :validate-event="false">
+              <ElRadio v-for="option in item.options" :key="option.label" :label="option.value">{{ option.label }} </ElRadio>
+            </ElRadioGroup>
+          </ElFormItem>
+        </ElForm>
+      </el-popover>
+    </div>
   </div>
 </template>
 
@@ -57,11 +72,11 @@ interface ListOptionsItem {
 
 const listOptions: ListOptionsItem[] = [
   {
-    label: 'Search Engine',
+    label: '搜索引擎',
     type: 'success',
     items: [
       {
-        label: 'BaiDu',
+        label: 'Baidu',
         icon: 'i-ri:baidu-fill',
       },
       {
@@ -81,5 +96,44 @@ const selectOptionItem = (item: ListOptionsItemItemsItem) => {
   selectedListOptionItem.icon = item.icon
 }
 
-const inputValue = ref()
+let inputValue = ref('')
+
+const { params: baiduSearchParams, paramsMap: baiduSearchParamsMap, search: baiduSearch } = useBaiduSearch()
+const popoverFormMap = computed(() => {
+  if (selectedListOptionItem.label === 'Baidu') {
+    inputValue = toRef(baiduSearchParams, 'q1')
+    return baiduSearchParamsMap
+  }
+  return {} as any
+})
+const popoverFormMapData = computed(() => {
+  if (selectedListOptionItem.label === 'Baidu') {
+    return baiduSearchParams
+  }
+  return {} as any
+})
+const search = () => {
+  if (selectedListOptionItem.label === 'Baidu') {
+    baiduSearchParams.q1 = inputValue.value
+    baiduSearch()
+  }
+}
 </script>
+
+<style lang="scss" scoped>
+:deep(.el-select) {
+  .el-input__wrapper {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+  }
+}
+
+:deep(.el-input) {
+  .el-input__wrapper {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+  }
+}
+</style>
