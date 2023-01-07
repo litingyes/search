@@ -2,16 +2,25 @@
  * @Date: 2023-01-03 23:40:11
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-07 15:29:59
+ * @LastEditTime: 2023-01-07 16:09:44
  * @FilePath: /search/nuxt.config.ts
  */
+import { createResolver } from '@nuxt/kit'
+
+const { resolve } = createResolver(import.meta.url)
+
 export default defineNuxtConfig({
+  css: ['@unocss/reset/normalize.css', resolve('./assets/styles/base.scss')],
   modules: ['@unocss/nuxt', '@nuxtjs/color-mode', 'nuxt-headlessui'],
   unocss: {
     uno: true,
     icons: true,
     attributify: true,
-    shortcuts: [],
+    shortcuts: [
+      {
+        'icon-btn': 'cursor-pointer text-slate-900 dark:text-slate-200',
+      },
+    ],
     rules: [],
   },
   colorMode: {
