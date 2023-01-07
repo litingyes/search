@@ -2,12 +2,11 @@
  * @Date: 2023-01-07 20:26:44
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-07 23:50:37
+ * @LastEditTime: 2023-01-08 00:33:18
  * @FilePath: /search/composables/useBaiduSearch.ts
  */
 import { stringify } from 'qs'
 
-type BaiduSearchParam = string | undefined
 interface BaiduSearchParams {
   q1: string
   q2: string
@@ -18,9 +17,8 @@ interface BaiduSearchParams {
   ft: '' | 'pdf' | 'doc' | 'xls' | 'ppt' | 'rtf' | 'all'
   lm: '0' | '1' | '7' | '30' | '360'
   ct: '0' | '1' | '2'
-  [key: string]: BaiduSearchParam
 }
-type BaiduSearchParamsKeys = 'q1' | 'q2' | 'q3' | 'q4' | 'q5' | 'q6' | 'ft' | 'lm' | 'ct'
+
 type BaiduSearchParamsMapItemOptionItem = {
   label: string
   value?: string
@@ -34,7 +32,7 @@ interface BaiduSearchParamsMapItem {
   options?: BaiduSearchParamsMapItemOption
 }
 
-type BaiduSearchParamsMap = Record<BaiduSearchParamsKeys, BaiduSearchParamsMapItem>
+type BaiduSearchParamsMap = Record<keyof BaiduSearchParams, BaiduSearchParamsMapItem>
 
 export const useBaiduSearch = () => {
   const url = 'https://baidu.com/s'

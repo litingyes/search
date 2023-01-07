@@ -2,7 +2,7 @@
  * @Date: 2023-01-07 15:32:54
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-07 23:53:59
+ * @LastEditTime: 2023-01-08 01:36:35
  * @FilePath: /search/pages/index.vue
 -->
 <template>
@@ -99,23 +99,30 @@ const selectOptionItem = (item: ListOptionsItemItemsItem) => {
 let inputValue = ref('')
 
 const { params: baiduSearchParams, paramsMap: baiduSearchParamsMap, search: baiduSearch } = useBaiduSearch()
+const { params: googleSearchParams, paramsMap: googleSearchParamsMap, search: googleSearch } = useGoogleSearch()
 const popoverFormMap = computed(() => {
   if (selectedListOptionItem.label === 'Baidu') {
     inputValue = toRef(baiduSearchParams, 'q1')
     return baiduSearchParamsMap
+  } else if (selectedListOptionItem.label === 'Google') {
+    inputValue = toRef(googleSearchParams, 'as_q')
+    return googleSearchParamsMap
   }
   return {} as any
 })
 const popoverFormMapData = computed(() => {
   if (selectedListOptionItem.label === 'Baidu') {
     return baiduSearchParams
+  } else if (selectedListOptionItem.label === 'Google') {
+    return googleSearchParams
   }
   return {} as any
 })
 const search = () => {
   if (selectedListOptionItem.label === 'Baidu') {
-    baiduSearchParams.q1 = inputValue.value
     baiduSearch()
+  } else if (selectedListOptionItem.label === 'Google') {
+    googleSearch()
   }
 }
 </script>
