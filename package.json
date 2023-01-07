@@ -43,6 +43,7 @@
     "*.{ts,vue}": "eslint --fix"
   },
   "dependencies": {
+    "@element-plus/nuxt": "^1.0.1",
     "element-plus": "^2.2.28"
   }
 }
