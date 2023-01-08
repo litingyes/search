@@ -1,5 +1,22 @@
+.light {
+  background: #f8fafc;
+
+  .el-popper__arrow::before {
+    background: #f8fafc;
+  }
+}
+
+.dark {
+  background: #1e293b;
+
+  .el-popper__arrow::before {
+    background: #1e293b;
+  }
+}
+
 body {
   margin: 0;
+  overflow: scroll;
 }
 
 a {
