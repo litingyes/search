@@ -2,9 +2,25 @@
  * @Date: 2023-01-08 11:04:57
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-08 13:05:01
+ * @LastEditTime: 2023-01-08 13:24:47
  * @FilePath: /search/components/SearchSelect.vue
 -->
+<script lang="ts" setup>
+interface Props {
+  modelValue: SearchInfo
+  options: SearchInfo[]
+}
+const props = defineProps<Props>()
+
+const emit = defineEmits(['update:modelValue'])
+
+const colorMode = useColorMode()
+
+const handleSelect = (option: SearchInfo) => {
+  emit('update:modelValue', Object.assign(props.modelValue, option))
+}
+</script>
+
 <template>
   <ul class="hidden">
     <!-- fix can't dynamic import icon class  -->
@@ -32,21 +48,6 @@
     </el-popover>
   </ClientOnly>
 </template>
-
-<script lang="ts" setup>
-const colorMode = useColorMode()
-
-interface Props {
-  modelValue: SearchInfo
-  options: SearchInfo[]
-}
-const props = defineProps<Props>()
-const emit = defineEmits(['update:modelValue'])
-
-const handleSelect = (option: SearchInfo) => {
-  emit('update:modelValue', Object.assign(props.modelValue, option))
-}
-</script>
 
 <style lang="scss">
 .search-select {

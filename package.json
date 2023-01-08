@@ -6,9 +6,12 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "lint": "eslint --fix . --ext .ts,.vue",
+    "format": "prettier --write ."
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.34.0",
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
     "@commitlint/cz-commitlint": "^17.3.0",
@@ -34,8 +37,10 @@
     }
   },
   "lint-staged": {
-    "*.{ts,.vue}": "prettier --write --ignore-unknown",
-    "*.{ts,vue}": "eslint --fix"
+    "*.{ts,vue}": [
+      "eslint --fix",
+      "prettier --write --ignore-unknown"
+    ]
   },
   "dependencies": {
     "@element-plus/nuxt": "^1.0.1",
