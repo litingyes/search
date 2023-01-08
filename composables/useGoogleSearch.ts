@@ -2,7 +2,7 @@
  * @Date: 2023-01-08 00:11:45
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-08 12:35:39
+ * @LastEditTime: 2023-01-08 17:05:57
  * @FilePath: /search/composables/useGoogleSearch.ts
  */
 import { stringify } from 'qs'
@@ -85,7 +85,7 @@ export const useGoogleSearch = () => {
     lr: {
       key: 'lr',
       desc: '语言',
-      type: 'radio',
+      type: 'select',
       options: [
         {
           label: '任何语言',
@@ -132,7 +132,7 @@ export const useGoogleSearch = () => {
     cr: {
       key: 'cr',
       desc: '地区',
-      type: 'radio',
+      type: 'select',
       options: [
         {
           label: '任何国家/地区',
@@ -195,7 +195,7 @@ export const useGoogleSearch = () => {
     as_qdr: {
       key: 'as_qdr',
       desc: '最后更新时间',
-      type: 'radio',
+      type: 'select',
       options: [
         {
           label: '任何时间',
@@ -227,7 +227,7 @@ export const useGoogleSearch = () => {
     as_occt: {
       key: 'as_occt',
       desc: '字词出现位置',
-      type: 'radio',
+      type: 'select',
       options: [
         {
           label: '网页上任何位置',
@@ -269,7 +269,7 @@ export const useGoogleSearch = () => {
     as_filetype: {
       key: 'as_filetype',
       desc: '文件类型',
-      type: 'radio',
+      type: 'select',
       options: [
         {
           label: '任意格式',
@@ -320,7 +320,7 @@ export const useGoogleSearch = () => {
     tbs: {
       key: 'tbs',
       desc: '使用权限',
-      type: 'radio',
+      type: 'select',
       options: [
         {
           label: '不按照许可过滤',

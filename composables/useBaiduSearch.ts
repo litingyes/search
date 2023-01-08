@@ -2,7 +2,7 @@
  * @Date: 2023-01-07 20:26:44
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-08 12:38:11
+ * @LastEditTime: 2023-01-08 17:05:05
  * @FilePath: /search/composables/useBaiduSearch.ts
  */
 import { stringify } from 'qs'
@@ -65,7 +65,7 @@ export const useBaiduSearch = () => {
     q5: {
       key: 'q5',
       desc: '查询关键词位于',
-      type: 'radio',
+      type: 'select',
       options: [
         {
           label: '网页的任何地方',
@@ -89,7 +89,7 @@ export const useBaiduSearch = () => {
     ft: {
       key: 'ft',
       desc: '搜索网页格式',
-      type: 'radio',
+      type: 'select',
       options: [
         {
           label: '所有网页和格式',
@@ -120,7 +120,7 @@ export const useBaiduSearch = () => {
     lm: {
       key: 'lm',
       desc: '搜索时间范围',
-      type: 'radio',
+      type: 'select',
       options: [
         {
           label: '全部时间',
@@ -147,7 +147,7 @@ export const useBaiduSearch = () => {
     ct: {
       key: 'ct',
       desc: '搜索网页语言',
-      type: 'radio',
+      type: 'select',
       options: [
         {
           label: '全部语言',

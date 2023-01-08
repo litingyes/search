@@ -2,7 +2,7 @@
  * @Date: 2023-01-07 15:32:54
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-08 16:58:55
+ * @LastEditTime: 2023-01-08 20:43:17
  * @FilePath: /search/pages/index.vue
 -->
 <script lang="ts" setup>
@@ -25,6 +25,7 @@ const listOptions = [baiduSearchInfo, googleSearchInfo]
 const selectedListOption: SearchInfo = reactive({ ...listOptions[0] })
 
 let inputValue = ref('')
+const popoverVisible = ref(false)
 const popoverFormMap = computed(() => {
   if (selectedListOption.name === baiduSearchInfo.name) {
     inputValue = toRef(baiduSearchParams, 'q1')
@@ -50,32 +51,57 @@ const search = () => {
     googleSearch()
   }
 }
+
+const pageIndexSearchInputRef = ref()
+const litingSearchRef: any = inject('litingSearchRef')
+onClickOutside(pageIndexSearchInputRef, (e) => {
+  let el: any = e.target
+  while (el !== litingSearchRef.value && el.parentNode) {
+    el = el.parentNode
+  }
+  if (el === litingSearchRef.value) {
+    popoverVisible.value = false
+  }
+})
 </script>
 
 <template>
   <div class="page-index mt-32 flex items-center flex-col gap-4">
-    <div>
-      <el-popover width="600px" trigger="click" :effect="colorMode.value">
-        <template #reference>
-          <ElInput v-model="inputValue" class="page-index__input !w-96 !rounded-lg" size="large">
-            <template #prefix>
-              <SearchSelect v-model="selectedListOption" :options="listOptions"> </SearchSelect>
-            </template>
-            <template #append>
-              <div class="i-uil:search text-lg cursor-pointer" @click="search"></div>
-            </template>
-          </ElInput>
-        </template>
-        <ElForm size="small">
-          <ElFormItem v-for="item in popoverFormMap" :key="item.key" :label="item.desc">
-            <ElInput v-if="item.type === 'input'" v-model="popoverFormMapData[item.key]"></ElInput>
-            <ElRadioGroup v-else-if="item.type === 'radio'" v-model="popoverFormMapData[item.key]" :validate-event="false">
-              <ElRadio v-for="option in item.options" :key="option.label" :label="option.value">{{ option.label }} </ElRadio>
-            </ElRadioGroup>
-          </ElFormItem>
-        </ElForm>
-      </el-popover>
-    </div>
+    <el-popover :visible="popoverVisible" width="600px" :effect="colorMode.value">
+      <template #reference>
+        <ElInput
+          ref="pageIndexSearchInputRef"
+          v-model="inputValue"
+          class="page-index__input !w-96 !rounded-lg"
+          size="large"
+          :validate-event="false"
+          @focus="popoverVisible = true"
+        >
+          <template #prefix>
+            <SearchSelect v-model="selectedListOption" :options="listOptions"> </SearchSelect>
+          </template>
+          <template #append>
+            <div class="i-uil:search text-lg cursor-pointer" @click="search"></div>
+          </template>
+        </ElInput>
+      </template>
+      <ElForm size="small">
+        <ElFormItem v-for="item in popoverFormMap" :key="item.key" :label="item.desc">
+          <ElInput v-if="item.type === 'input'" v-model="popoverFormMapData[item.key]"></ElInput>
+          <ElRadioGroup v-else-if="item.type === 'radio'" v-model="popoverFormMapData[item.key]" :validate-event="false">
+            <ElRadio v-for="option in item.options" :key="option.label" :label="option.value">{{ option.label }} </ElRadio>
+          </ElRadioGroup>
+          <ElSelect
+            v-else-if="item.type === 'select'"
+            v-model="popoverFormMapData[item.key]"
+            :validate-event="false"
+            :effect="colorMode.value"
+          >
+            <ElOption v-for="option in item.options" :key="option.label" :label="option.label" :value="option.value"></ElOption>
+          </ElSelect>
+        </ElFormItem>
+      </ElForm>
+    </el-popover>
   </div>
 </template>
 

@@ -2,7 +2,7 @@
  * @Date: 2023-01-08 10:41:04
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-08 11:41:51
+ * @LastEditTime: 2023-01-08 17:04:50
  * @FilePath: /search/search.d.ts
  */
 interface SearchInfo {
@@ -22,7 +22,7 @@ interface SearchParamsMapItemOption {
 interface SearchParamsMapItem {
   key: string
   desc: string
-  type: 'input' | 'radio'
+  type: 'input' | 'radio' | 'select'
   options?: SearchParamsMapItemOption[]
 }
 

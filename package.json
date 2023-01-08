@@ -48,6 +48,8 @@
     "@nuxtjs/color-mode": "^3.2.0",
     "@nuxtjs/google-fonts": "^2.0.0",
     "@unocss/nuxt": "^0.48.2",
+    "@vueuse/core": "^9.10.0",
+    "@vueuse/nuxt": "^9.10.0",
     "element-plus": "^2.2.28",
     "nuxt": "^3.0.0",
     "qs": "^6.11.0",

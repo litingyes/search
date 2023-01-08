@@ -2,7 +2,7 @@
  * @Date: 2023-01-03 23:40:11
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-07 16:59:50
+ * @LastEditTime: 2023-01-08 17:41:53
  * @FilePath: /search/nuxt.config.ts
  */
 import { createResolver } from '@nuxt/kit'
@@ -11,7 +11,7 @@ const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
   css: ['@unocss/reset/normalize.css', resolve('./assets/styles/base.scss')],
-  modules: ['@unocss/nuxt', '@nuxtjs/color-mode', '@element-plus/nuxt'],
+  modules: ['@unocss/nuxt', '@nuxtjs/color-mode', '@element-plus/nuxt', '@vueuse/nuxt'],
   unocss: {
     uno: true,
     icons: true,
