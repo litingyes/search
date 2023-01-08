@@ -2,12 +2,12 @@
  * @Date: 2023-01-08 00:11:45
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-08 01:30:26
+ * @LastEditTime: 2023-01-08 12:35:39
  * @FilePath: /search/composables/useGoogleSearch.ts
  */
 import { stringify } from 'qs'
 
-interface GoogleSearchParams {
+interface GoogleSearchParams extends SearchParams {
   as_q: string
   as_epq: string
   as_op: string
@@ -24,23 +24,15 @@ interface GoogleSearchParams {
   tbs: '' | 'f' | 'fc' | 'fm' | 'fmc'
 }
 
-type GoogleSearchParamsMapItemOptionItem = {
-  label: string
-  value?: string
-}
-type GoogleSearchParamsMapItemOption = GoogleSearchParamsMapItemOptionItem[]
-
-interface GoogleSearchParamsMapItem {
-  key: string
-  desc: string
-  type: 'input' | 'radio'
-  options?: GoogleSearchParamsMapItemOption
-}
-
-type GoogleSearchParamsMap = Record<keyof GoogleSearchParams, GoogleSearchParamsMapItem>
+type GoogleSearchParamsMap = SearchParamsMap<GoogleSearchParams>
 
 export const useGoogleSearch = () => {
   const url = 'https://www.google.co.jp/search'
+
+  const info: SearchInfo = {
+    name: '谷歌',
+    icon: 'i-bxl:google',
+  }
 
   const params: GoogleSearchParams = reactive({
     as_q: '',
@@ -358,5 +350,5 @@ export const useGoogleSearch = () => {
     window.open(`${url}?${stringify(params)}`)
   }
 
-  return { params, paramsMap, search }
+  return { info, params, paramsMap, search }
 }

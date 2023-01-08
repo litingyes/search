@@ -2,12 +2,12 @@
  * @Date: 2023-01-07 20:26:44
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-08 00:33:18
+ * @LastEditTime: 2023-01-08 12:38:11
  * @FilePath: /search/composables/useBaiduSearch.ts
  */
 import { stringify } from 'qs'
 
-interface BaiduSearchParams {
+interface BaiduSearchParams extends SearchParams {
   q1: string
   q2: string
   q3: string
@@ -19,23 +19,15 @@ interface BaiduSearchParams {
   ct: '0' | '1' | '2'
 }
 
-type BaiduSearchParamsMapItemOptionItem = {
-  label: string
-  value?: string
-}
-type BaiduSearchParamsMapItemOption = BaiduSearchParamsMapItemOptionItem[]
-
-interface BaiduSearchParamsMapItem {
-  key: string
-  desc: string
-  type: 'input' | 'radio'
-  options?: BaiduSearchParamsMapItemOption
-}
-
-type BaiduSearchParamsMap = Record<keyof BaiduSearchParams, BaiduSearchParamsMapItem>
+type BaiduSearchParamsMap = SearchParamsMap<BaiduSearchParams>
 
 export const useBaiduSearch = () => {
   const url = 'https://baidu.com/s'
+
+  const info: SearchInfo = {
+    name: '百度',
+    icon: 'i-ri:baidu-fill',
+  }
 
   const params: BaiduSearchParams = reactive({
     q1: '',
@@ -177,5 +169,5 @@ export const useBaiduSearch = () => {
     window.open(`${url}?${stringify(params)}`)
   }
 
-  return { params, paramsMap, search }
+  return { info, params, paramsMap, search }
 }
