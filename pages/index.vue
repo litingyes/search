@@ -2,7 +2,7 @@
  * @Date: 2023-01-07 15:32:54
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-08 13:25:17
+ * @LastEditTime: 2023-01-08 16:58:55
  * @FilePath: /search/pages/index.vue
 -->
 <script lang="ts" setup>
@@ -57,7 +57,7 @@ const search = () => {
     <div>
       <el-popover width="600px" trigger="click" :effect="colorMode.value">
         <template #reference>
-          <ElInput v-model="inputValue" class="!w-96 !rounded-lg">
+          <ElInput v-model="inputValue" class="page-index__input !w-96 !rounded-lg" size="large">
             <template #prefix>
               <SearchSelect v-model="selectedListOption" :options="listOptions"> </SearchSelect>
             </template>
@@ -81,8 +81,14 @@ const search = () => {
 
 <style lang="scss">
 .page-index {
-  .el-input-group__append {
-    padding: 0 12px;
+  &__input {
+    .el-input-group__append {
+      padding: 0 12px;
+    }
+
+    .el-input__wrapper {
+      padding-left: 8px !important;
+    }
   }
 }
 </style>
