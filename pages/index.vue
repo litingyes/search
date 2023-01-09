@@ -2,7 +2,7 @@
  * @Date: 2023-01-07 15:32:54
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-09 23:23:55
+ * @LastEditTime: 2023-01-09 23:49:00
  * @FilePath: /search/pages/index.vue
 -->
 <script lang="ts" setup>
@@ -72,7 +72,7 @@ onClickOutside(pageIndexSearchInputRef, (e) => {
         <ElInput
           ref="pageIndexSearchInputRef"
           v-model="inputValue"
-          class="page-index__input !w-96 !rounded-lg"
+          class="page-index__input !w-96"
           size="large"
           :validate-event="false"
           @focus="popoverVisible = true"
@@ -80,8 +80,8 @@ onClickOutside(pageIndexSearchInputRef, (e) => {
           <template #prefix>
             <SearchSelect v-model="selectedListOption" :options="listOptions"> </SearchSelect>
           </template>
-          <template #append>
-            <div class="i-uil:search text-lg cursor-pointer" @click="search"></div>
+          <template #suffix>
+            <div class="i-uil:search text-xl cursor-pointer text-slate-900 hover:text-blue-400" @click="search"></div>
           </template>
         </ElInput>
       </template>
@@ -108,12 +108,11 @@ onClickOutside(pageIndexSearchInputRef, (e) => {
 <style lang="scss">
 .page-index {
   &__input {
-    .el-input-group__append {
-      padding: 0 12px;
-    }
-
     .el-input__wrapper {
+      border-radius: 12px;
       padding-left: 8px !important;
+      box-shadow: 0 0 4px 2px rgba(148, 163, 184, 0.2);
+      background: #f1f5f9;
     }
   }
 }

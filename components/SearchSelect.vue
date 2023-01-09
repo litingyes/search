@@ -2,7 +2,7 @@
  * @Date: 2023-01-08 11:04:57
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-08 17:02:26
+ * @LastEditTime: 2023-01-09 23:40:43
  * @FilePath: /search/components/SearchSelect.vue
 -->
 <script lang="ts" setup>
@@ -31,7 +31,7 @@ const handleSelect = (option: SearchInfo) => {
     <el-popover popper-class="search-select__popover" placement="bottom" trigger="focus" :effect="colorMode.value" width="auto">
       <template #reference>
         <el-button class="search-select__reference !w-8 !h-8 !border-0 !rounded-full !p-0" @click.stop
-          ><div class="text-2xl" :class="props.modelValue.icon"></div
+          ><div class="text-xl text-slate-900" :class="props.modelValue.icon"></div
         ></el-button>
       </template>
       <ul class="search-select__content px-2 py-1 m-0">
