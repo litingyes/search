@@ -2,7 +2,7 @@
  * @Date: 2023-01-03 23:40:11
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-08 17:49:43
+ * @LastEditTime: 2023-01-09 23:20:51
  * @FilePath: /search/app.vue
 -->
 <script lang="ts" setup>
@@ -13,7 +13,7 @@ provide('litingSearchRef', litingSearchRef)
 <template>
   <div
     ref="litingSearchRef"
-    class="liting-search w-screen h-screen bg-slate-50 text-slate-900 dark:bg-slate-800 dark:text-slate-200"
+    class="liting-search w-screen h-screen transition-colors duration-600 ease bg-slate-50 text-slate-700 dark:bg-slate-800 dark:text-gray-300"
   >
     <NuxtLayout>
       <NavBar></NavBar>
