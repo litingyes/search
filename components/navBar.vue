@@ -2,15 +2,17 @@
  * @Date: 2023-01-07 15:35:23
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-08 13:24:44
- * @FilePath: /search/components/navBar.vue
+ * @LastEditTime: 2023-01-09 23:30:12
+ * @FilePath: /search/components/NavBar.vue
 -->
 <script lang="ts" setup>
 const colorMode = useColorMode()
 </script>
 
 <template>
-  <header class="search-navbar bg-slate-100/50 dark:bg-slate-900/50 backdrop-blur h-16 px-8 flex justify-between items-center">
+  <header
+    class="search-navbar w-full fixed z-10 drop-shadow-2xl bg-slate-200/50 dark:bg-slate-800/50 backdrop-blur h-16 px-8 flex justify-between items-center"
+  >
     <NuxtLink class="text-3xl text-slate-900 dark:text-slate-200 font-bold" to="/">Search</NuxtLink>
     <div class="flex justify-end items-center gap-4">
       <div>

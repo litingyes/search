@@ -2,7 +2,7 @@
  * @Date: 2023-01-07 15:32:54
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-08 20:43:17
+ * @LastEditTime: 2023-01-09 23:23:55
  * @FilePath: /search/pages/index.vue
 -->
 <script lang="ts" setup>
@@ -66,7 +66,7 @@ onClickOutside(pageIndexSearchInputRef, (e) => {
 </script>
 
 <template>
-  <div class="page-index mt-32 flex items-center flex-col gap-4">
+  <div class="page-index pt-32 flex items-center flex-col gap-4">
     <el-popover :visible="popoverVisible" width="600px" :effect="colorMode.value">
       <template #reference>
         <ElInput
