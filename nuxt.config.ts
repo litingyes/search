@@ -2,9 +2,11 @@
  * @Date: 2023-01-03 23:40:11
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-09 23:09:33
+ * @LastEditTime: 2023-01-09 23:14:51
  * @FilePath: /search/nuxt.config.ts
  */
+import { defineNuxtConfig } from 'nuxt/config'
+
 export default defineNuxtConfig({
   css: ['@unocss/reset/normalize.css', '@/assets/styles/base.scss'],
   modules: ['@unocss/nuxt', '@nuxtjs/color-mode', '@element-plus/nuxt', '@vueuse/nuxt'],
