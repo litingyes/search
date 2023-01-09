@@ -2,7 +2,7 @@
  * @Date: 2023-01-07 15:32:54
  * @Author: liting luz.liting@gmail.com
  * @LastEditors: liting luz.liting@gmail.com
- * @LastEditTime: 2023-01-09 23:49:00
+ * @LastEditTime: 2023-01-09 23:58:15
  * @FilePath: /search/pages/index.vue
 -->
 <script lang="ts" setup>
@@ -67,7 +67,7 @@ onClickOutside(pageIndexSearchInputRef, (e) => {
 
 <template>
   <div class="page-index pt-32 flex items-center flex-col gap-4">
-    <el-popover :visible="popoverVisible" width="600px" :effect="colorMode.value">
+    <el-popover :visible="popoverVisible" width="600px" :effect="colorMode.value" popper-class="page-index__popover">
       <template #reference>
         <ElInput
           ref="pageIndexSearchInputRef"
@@ -85,7 +85,7 @@ onClickOutside(pageIndexSearchInputRef, (e) => {
           </template>
         </ElInput>
       </template>
-      <ElForm size="small">
+      <ElForm size="small" label-position="left" label-width="160px">
         <ElFormItem v-for="item in popoverFormMap" :key="item.key" :label="item.desc">
           <ElInput v-if="item.type === 'input'" v-model="popoverFormMapData[item.key]"></ElInput>
           <ElRadioGroup v-else-if="item.type === 'radio'" v-model="popoverFormMapData[item.key]" :validate-event="false">
